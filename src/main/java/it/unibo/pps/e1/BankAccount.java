@@ -1,6 +1,6 @@
 package it.unibo.pps.e1;
 
-public interface BankAccount {
+public abstract interface BankAccount {
     int balance = 0;
 
     public int getBalance();
@@ -8,4 +8,6 @@ public interface BankAccount {
     public void deposit(int amount);
 
     public void withdraw(int amount);
+
+    public int getFee(int amount);
 }

@@ -13,6 +13,9 @@ class CoreBankAccount implements BankAccount{
     }
 
     public void withdraw(int amount) {
-        this.balance = this.balance - amount;
+        this.balance = this.balance - amount - getFee(amount);
     }
+
+    @Override
+    public int getFee(int amount) {return 0;}
 }

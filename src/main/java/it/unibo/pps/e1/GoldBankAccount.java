@@ -2,7 +2,7 @@ package it.unibo.pps.e1;
 
 public class GoldBankAccount implements BankAccount {
 
-    private BankAccount baseBankAccount;
+    private final BankAccount baseBankAccount;
 
     public GoldBankAccount(BankAccount baseBankAccount) {
         this.baseBankAccount = baseBankAccount;
@@ -25,5 +25,10 @@ public class GoldBankAccount implements BankAccount {
             throw new IllegalStateException();
         }
         baseBankAccount.withdraw(amount);
+    }
+
+    @Override
+    public int getFee(int amount) {
+        return 0;
     }
 }

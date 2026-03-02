@@ -2,7 +2,7 @@ package it.unibo.pps.e1;
 
 public class BronzeBankAccount implements BankAccount {
 
-    private BankAccount baseBankAccount;
+    private final BankAccount baseBankAccount;
 
     public BronzeBankAccount(BankAccount baseBankAccount) {
         this.baseBankAccount = baseBankAccount;
@@ -23,7 +23,13 @@ public class BronzeBankAccount implements BankAccount {
         if (this.getBalance() < amount){
             throw new IllegalStateException();
         }
-        int fee = (amount < 100) ? 0 : 1;
+        int fee = getFee(amount);
         baseBankAccount.withdraw(amount + fee);
     }
+
+    @Override
+    public int getFee(int amount) {
+       return  (amount < 100) ? 0 : 1;
+    }
+
 }

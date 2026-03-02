@@ -6,13 +6,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class CoreBankAccountTest {
+public abstract class CoreBankAccountTest {
 
-    private CoreBankAccount account;
+    protected BankAccount account;
+
+    protected abstract BankAccount getAccount();
 
     @BeforeEach
     void init(){
-        this.account = new CoreBankAccount();
+        this.account = getAccount();
     }
 
     @Test
@@ -34,8 +36,10 @@ public class CoreBankAccountTest {
         int withdraw  = 50;
         this.account.deposit(deposit);
         this.account.withdraw(withdraw);
-        assertEquals(deposit - withdraw, this.account.getBalance());
+        assertEquals(deposit - withdraw - account.getFee(withdraw), this.account.getBalance());
     }
+
+
 
 
 }
