@@ -17,20 +17,24 @@ public class CoreBankAccountTest {
 
     @Test
     public void testInitiallyEmpty() {
-        assertEquals(0, this.account.getBalance());
+        int initialBalance = 0;
+        assertEquals(initialBalance, this.account.getBalance());
     }
 
     @Test
     public void testCanDeposit() {
-        this.account.deposit(1000);
-        assertEquals(1000, this.account.getBalance());
+        int depositAmount = 1000;
+        this.account.deposit(depositAmount);
+        assertEquals(depositAmount, this.account.getBalance());
     }
 
     @Test
     public void testCanWithdraw() {
-        this.account.deposit(1000);
-        this.account.withdraw(50);
-        assertEquals(950, this.account.getBalance());
+        int deposit = 1000;
+        int withdraw  = 50;
+        this.account.deposit(deposit);
+        this.account.withdraw(withdraw);
+        assertEquals(deposit - withdraw, this.account.getBalance());
     }
 
 
