@@ -17,40 +17,52 @@ public class BronzeBankAccountTest {
 
     @Test
     public void testInitiallyEmpty() {
-        assertEquals(0, this.account.getBalance());
+        int initialBalance = 0;
+        assertEquals(initialBalance, this.account.getBalance());
     }
 
     @Test
     public void testCanDeposit() {
-        this.account.deposit(1000);
-        assertEquals(1000, this.account.getBalance());
+        int deposit = 1000;
+        this.account.deposit(deposit);
+        assertEquals(deposit, this.account.getBalance());
     }
 
     @Test
     public void testCanWithdraw() {
-        this.account.deposit(1000);
-        this.account.withdraw(50);
-        assertEquals(950, this.account.getBalance());
+        int deposit = 1000;
+        int withdraw = 50;
+        this.account.deposit(deposit);
+        this.account.withdraw(withdraw);
+        assertEquals(deposit - withdraw, this.account.getBalance());
     }
 
+    // if withdraw amount < 100 the fee is equal to 0 otherwise fee is 1
     @Test
     public void testCanWithdrawWithoutFee(){
-        this.account.deposit(1000);
-        this.account.withdraw(50);
-        assertEquals(950, this.account.getBalance());
+        int deposit = 1000;
+        int withdraw = 90;
+        this.account.deposit(deposit);
+        this.account.withdraw(withdraw);
+        assertEquals(deposit - withdraw, this.account.getBalance());
     }
 
     @Test
     public void testCanWithdrawWithFee(){
-        this.account.deposit(1000);
-        this.account.withdraw(200);
-        assertEquals(799, this.account.getBalance());
+        int deposit = 1000;
+        int withdraw = 250;
+        int fee = 1;
+        this.account.deposit(deposit);
+        this.account.withdraw(withdraw);
+        assertEquals(deposit - withdraw - fee, this.account.getBalance());
     }
 
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
-        this.account.deposit(1000);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(1600));
+        int deposit = 1000;
+        int withdraw = 1600;
+        this.account.deposit(deposit);
+        assertThrows(IllegalStateException.class, () -> this.account.withdraw(withdraw));
     }
 
 }
