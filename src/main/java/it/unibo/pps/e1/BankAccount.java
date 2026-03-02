@@ -2,6 +2,8 @@ package it.unibo.pps.e1;
 
 public abstract interface BankAccount {
     int balance = 0;
+    int NO_FEE = 0;
+    int BASE_FEE = 1;
 
     public int getBalance();
 

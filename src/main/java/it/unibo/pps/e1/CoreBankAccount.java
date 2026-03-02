@@ -17,5 +17,5 @@ class CoreBankAccount implements BankAccount{
     }
 
     @Override
-    public int getFee(int amount) {return 0;}
+    public int getFee(int amount) {return NO_FEE;}
 }

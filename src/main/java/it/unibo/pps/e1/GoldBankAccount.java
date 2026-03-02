@@ -20,15 +20,18 @@ public class GoldBankAccount implements BankAccount {
 
     @Override
     public void withdraw(int amount) {
-        int overDraftLimit = 500;
-        if (this.getBalance() < amount - overDraftLimit ){
+        int creditLimit = -500;
+        if (this.getBalance() - amount > creditLimit ){
+            int fee = getFee(amount);
+            baseBankAccount.withdraw(amount + fee);
+        } else {
             throw new IllegalStateException();
         }
-        baseBankAccount.withdraw(amount);
+
     }
 
     @Override
     public int getFee(int amount) {
-        return 0;
+        return NO_FEE;
     }
 }

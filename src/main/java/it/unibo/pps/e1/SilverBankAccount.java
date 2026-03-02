@@ -26,6 +26,6 @@ public class SilverBankAccount implements BankAccount{
 
     @Override
     public int getFee(int amount) {
-        return 1;
+        return BASE_FEE;
     }
 }
