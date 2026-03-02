@@ -1,26 +1,30 @@
 package it.unibo.pps.e1;
 
-public class SilverBankAccount implements BankAccount{
+public class GoldBankAccount implements BankAccount {
 
-    private final BankAccount baseBankAccount;
+    private BankAccount baseBankAccount;
 
-    public SilverBankAccount(BankAccount baseBankAccount){
+
+    public GoldBankAccount(BankAccount baseBankAccount) {
         this.baseBankAccount = baseBankAccount;
     }
 
+    @Override
     public int getBalance() {
         return baseBankAccount.getBalance();
     }
 
+    @Override
     public void deposit(int amount) {
         baseBankAccount.deposit(amount);
     }
 
+    @Override
     public void withdraw(int amount) {
-        if (this.getBalance() < amount){
+        int overDraftLimit = 500;
+        if (this.getBalance() < amount - overDraftLimit ){
             throw new IllegalStateException();
         }
-        int fee = 1;
-        baseBankAccount.withdraw(amount + fee);
+        baseBankAccount.withdraw(amount);
     }
 }
