@@ -21,16 +21,17 @@ public class BronzeBankAccountTest extends CoreBankAccountTest{
         int withdraw = 90;
         this.account.deposit(deposit);
         this.account.withdraw(withdraw);
-        assertEquals(deposit - withdraw - account.getFee(withdraw), this.account.getBalance());
+        assertEquals(deposit - withdraw, this.account.getBalance());
     }
 
     @Test
     public void testCanWithdrawWithFee(){
         int deposit = 1000;
         int withdraw = 250;
+        int fee = 1;
         this.account.deposit(deposit);
         this.account.withdraw(withdraw);
-        assertEquals(deposit - withdraw - account.getFee(withdraw), this.account.getBalance());
+        assertEquals(deposit - withdraw - fee, this.account.getBalance());
     }
 
     @Test

@@ -14,7 +14,7 @@ public class GoldBankAccountTest extends CoreBankAccountTest{
     }
 
     @Test
-    public void testCanWithdrawWithOverDraft(){
+    public void testCanWithdrawToNegativeBalance(){
         int deposit = 1000;
         int withdraw = 1200;
         account.deposit(deposit);
@@ -22,8 +22,9 @@ public class GoldBankAccountTest extends CoreBankAccountTest{
         assertEquals(deposit - withdraw, this.account.getBalance());
     }
 
+    // the credit limit is set to -500$ by domain description
     @Test
-    public void testCannotWithdrawMoreThanOverDraft(){
+    public void testCannotWithdrawMoreThanCreditLimit(){
         int deposit = 1000;
         int withdraw = 1600;
         this.account.deposit(deposit);
